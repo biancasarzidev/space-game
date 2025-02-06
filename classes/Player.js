@@ -1,3 +1,5 @@
+import { PATH_SPACESHIP_IMAGE } from "../utils/constant.js";
+
 class Player {
     constructor(canvaswidth, canvasheight) {
         this.width = 100;
@@ -8,6 +10,14 @@ class Player {
             x: canvaswidth / 2 - this.width / 2,
             y: canvasheight - this.height - 30,
         }
+
+        this.image = this.getImage(PATH_SPACESHIP_IMAGE);
+    }
+
+    getImage(path) {
+        const image = new Image();
+        image.src = path;
+        return image;
     }
 
     moveLeft() {
@@ -19,13 +29,7 @@ class Player {
     }
     
     draw(ctx) {
-        ctx.fillStyle = "red";
-        ctx.fillRect(
-            this.position.x, 
-            this.position.y, 
-            this.width, 
-            this.height   
-        );
+        ctx.getImage()
     }
 }
 
