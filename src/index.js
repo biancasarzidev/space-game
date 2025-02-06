@@ -18,11 +18,11 @@ const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (keys.left) {
-        player.position.x -= 6;
+        player.moveLeft();
     }
 
     if (keys.right) {
-        player.position.x += 6;
+        player.moveRight();
     }
 
 
@@ -43,5 +43,17 @@ addEventListener("keydown", (event) => {
 
     if (key == "d") {
         keys.right = true;
+    }
+})
+
+addEventListener("keyup", (event) => {
+    const key = event.key.toLowerCase();
+
+    if (key === "a") {
+        keys.left = false;
+    }
+
+    if (key == "d") {
+        keys.right = false;
     }
 })
