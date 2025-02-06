@@ -17,43 +17,33 @@ const keys = {
 const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    if (keys.left) {
+    if (keys.left && player.position.x >= 0) {
         player.moveLeft();
     }
 
-    if (keys.right) {
+    if (keys.right && player.position.x <= canvas.width - player.width) {
         player.moveRight();
     }
-
 
     player.draw(ctx);
 
     requestAnimationFrame(gameLoop)
 }
 
-gameLoop();
-
-
 addEventListener("keydown", (event) => {
     const key = event.key.toLowerCase();
 
-    if (key === "a") {
-        keys.left = true;
-    }
+    if (key === "a") keys.left = true;
 
-    if (key == "d") {
-        keys.right = true;
-    }
+    if (key == "d") keys.right = true;
 })
 
 addEventListener("keyup", (event) => {
     const key = event.key.toLowerCase();
 
-    if (key === "a") {
-        keys.left = false;
-    }
+    if (key === "a") keys.left = false;
 
-    if (key == "d") {
-        keys.right = false;
-    }
+    if (key == "d") keys.right = false;
 })
+
+gameLoop();
