@@ -8,8 +8,24 @@ canvas.height = window.innerHeight;
 
 const player = new Player(canvas.width, canvas.height);
 
+const keys = {
+    left: false,
+    right: false,
+}
+
 
 const gameLoop = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (keys.left) {
+        player.position.x -= 6;
+    }
+
+    if (keys.right) {
+        player.position.x += 6;
+    }
+
+
     player.draw(ctx);
 
     requestAnimationFrame(gameLoop)
@@ -22,10 +38,10 @@ addEventListener("keydown", (event) => {
     const key = event.key.toLowerCase();
 
     if (key === "a") {
-        player.position.x -= 20;
+        keys.left = true;
     }
 
     if (key == "d") {
-        player.positision.x += 20;
+        keys.right = true;
     }
 })
