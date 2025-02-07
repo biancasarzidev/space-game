@@ -6,6 +6,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+ctx.imageSmoothingEnabled = false;
+
 const player = new Player(canvas.width, canvas.height);
 
 const keys = {
@@ -27,7 +29,7 @@ const gameLoop = () => {
 
     player.draw(ctx);
 
-    requestAnimationFrame(gameLoop)
+    requestAnimationFrame(gameLoop);
 }
 
 addEventListener("keydown", (event) => {
@@ -35,7 +37,7 @@ addEventListener("keydown", (event) => {
 
     if (key === "a") keys.left = true;
 
-    if (key == "d") keys.right = true;
+    if (key === "d") keys.right = true;
 })
 
 addEventListener("keyup", (event) => {
@@ -43,7 +45,7 @@ addEventListener("keyup", (event) => {
 
     if (key === "a") keys.left = false;
 
-    if (key == "d") keys.right = false;
+    if (key === "d") keys.right = false;
 })
 
 gameLoop();

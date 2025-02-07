@@ -2,9 +2,9 @@ import { PATH_SPACESHIP_IMAGE } from "../utils/constant.js";
 
 class Player {
     constructor(canvaswidth, canvasheight) {
-        this.width = 100;
-        this.height = 100;
-        this.velocity = 7;
+        this.width = 48 * 2;
+        this.height = 48 * 2;
+        this.velocity = 8;
 
         this.position = {
             x: canvaswidth / 2 - this.width / 2,
@@ -29,7 +29,7 @@ class Player {
     }
     
     draw(ctx) {
-        ctx.getImage()
+        ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
     }
 }
 
