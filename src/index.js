@@ -48,7 +48,9 @@ const gameLoop = () => {
     drawProjectiles();
     clearProjectiles();
 
-    grid.invader.forEach(invader => invader.draw(ctx));
+    grid.draw(ctx);
+
+    grid.invaders.forEach(invader => invader.draw(ctx));
     
     ctx.save();
 
