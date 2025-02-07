@@ -12,17 +12,14 @@ class Grid {
     }
 
     init() {
-        const array = []
+        const array = [];
 
         for (let row = 0; row < this.rows; row += 1) {
-
             for (let col = 0; col < this.cols; col += 1) {
                 const invader = new Invader({
                     x: col * 45 + 20,
                     y: row * 36 + 20,
-                }, 
-                
-                this.invaderVelocity);
+                }, this.invaderVelocity);
                 
                 array.push(invader);
             }   
@@ -36,17 +33,18 @@ class Grid {
     }
 
     update() {
-        if () {
+        if (this.invaders.length > 0 && this.invaders[0].position.x <= 0) {  
             this.direction = "left";
             this.movedown = true;
-        } else if () {
+        } else if (this.invaders.length > 0 && this.invaders[this.invaders.length - 1].position.x >= window.innerWidth) {  
             this.direction = "right";
             this.movedown = false;
         }
 
-        this.invaders.forEach(invader) => {
-            if(this.direction === "right") invader.moveRight()
-        }
+        this.invaders.forEach((invader) => {  
+            if (this.direction === "right") invader.moveRight(); 
+            if (this.direction === "left") invader.moveLeft(); 
+        });
     }
 }
 
