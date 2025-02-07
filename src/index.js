@@ -1,3 +1,4 @@
+import Invader from "../classes/Invader.js";
 import Player from "../classes/Player.js";
 import Projectile from "../classes/projectile.js";
 
@@ -10,6 +11,8 @@ canvas.height = window.innerHeight;
 ctx.imageSmoothingEnabled = false;
 
 const player = new Player(canvas.width, canvas.height);
+
+const invader = new Invader({x: 150, y: 100}, 5);
 
 const playerProjectile = [];
 
@@ -29,11 +32,23 @@ const drawProjectiles = () => {
     })
 }
 
+const clearProjectiles = () => {
+    playerProjectile.forEach((projectile, index) => {
+        if (projectile.position.y <= 0) {
+            playerProjectile.splice(index, 1);
+        }
+    })
+}
+
 
 const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    invader.draw(ctx);
+    
+
     drawProjectiles();
+    clearProjectiles();
     
     ctx.save();
 
