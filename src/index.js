@@ -11,25 +11,41 @@ ctx.imageSmoothingEnabled = false;
 
 const player = new Player(canvas.width, canvas.height);
 
-const p = new Projectile({x: 200, y: 300}, 5);
+const playerProjectile = [];
 
 const keys = {
     left: false,
     right: false,
+    shoot: {
+        pressed: false,
+        released: true,
+    }
+}
+
+const drawProjectiles = () => {
+    playerProjectile.forEach((projectile) => {
+        projectile.draw(ctx);
+        projectile.update();
+    })
 }
 
 
 const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    p.draw(ctx);
-
+    drawProjectiles();
+    
     ctx.save();
 
     ctx.translate(
         player.position.x + player.width / 2, 
         player.position.y + player.height / 2
     );
+
+    if (keys.shoot.pressed && keys.shoot.released) {
+        player.shoot(playerProjectile);
+        keys.shoot.pressed = false;
+    }
 
     if (keys.left && player.position.x >= 0) {
         player.moveLeft();
@@ -59,6 +75,8 @@ addEventListener("keydown", (event) => {
     if (key === "a") keys.left = true;
 
     if (key === "d") keys.right = true;
+
+    if (key === "enter") keys.shoot.pressed = true;
 })
 
 addEventListener("keyup", (event) => {
@@ -67,6 +85,11 @@ addEventListener("keyup", (event) => {
     if (key === "a") keys.left = false;
 
     if (key === "d") keys.right = false;
+
+    if (key === "enter") {
+        keys.shoot.pressed = false;
+        keys.shoot.released = true;
+    }
 })
 
 gameLoop();

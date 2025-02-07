@@ -1,4 +1,5 @@
 import { INITIAL_FRAMES, PATH_ENGINE_IMAGE, PATH_ENGINE_SPRITES, PATH_SPACESHIP_IMAGE } from "../utils/constant.js";
+import Projectile from "./projectile.js";
 
 class Player {
     constructor(canvaswidth, canvasheight) {
@@ -75,6 +76,16 @@ class Player {
         }
 
         this.framesCounter --;
+    }
+
+    shoot(projectile) {
+        const p  = new Projectile({
+            x: this.position.x + this.width / 2 - 1,
+            y: this.position.y,
+            }, -5 
+        );
+
+        projectile.push(p);
     }
 }
 
