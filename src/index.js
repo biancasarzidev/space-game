@@ -1,3 +1,4 @@
+import Grid from "../classes/Grid.js";
 import Invader from "../classes/Invader.js";
 import Player from "../classes/Player.js";
 import Projectile from "../classes/projectile.js";
@@ -12,7 +13,7 @@ ctx.imageSmoothingEnabled = false;
 
 const player = new Player(canvas.width, canvas.height);
 
-const invader = new Invader({x: 150, y: 100}, 5);
+const grid = new Grid(3, 6);
 
 const playerProjectile = [];
 
@@ -43,12 +44,11 @@ const clearProjectiles = () => {
 
 const gameLoop = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    invader.draw(ctx);
     
-
     drawProjectiles();
     clearProjectiles();
+
+    grid.invader.forEach(invader => invader.draw(ctx));
     
     ctx.save();
 

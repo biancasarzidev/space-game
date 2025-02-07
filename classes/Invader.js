@@ -5,8 +5,8 @@ class Invader {
     constructor(position, velocity) {
 
         this.position = position;
-        this.width = 50 * 2;
-        this.height = 37 * 2;
+        this.width = 50 * 0.8;
+        this.height = 37 * 0.8;
         this.velocity = velocity;
 
         this.image = this.getImage(PATH_INVADER_IMAGE);
@@ -37,14 +37,14 @@ class Invader {
     }
     
 
-    shoot(projectile) {
+    shoot(projectiles) {
         const p  = new Projectile({
             x: this.position.x + this.width / 2 - 1,
-            y: this.position.y,
+            y: this.position.y 
             }, 10
         );
-
-        projectile.push(p);
+        
+        projectiles.push(p);
     }
 }
 
