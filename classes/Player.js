@@ -82,7 +82,7 @@ class Player {
         const p  = new Projectile({
             x: this.position.x + this.width / 2 - 1,
             y: this.position.y,
-            }, -5 
+            }, -10
         );
 
         projectile.push(p);
