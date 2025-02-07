@@ -1,9 +1,9 @@
-import { PATH_ENGINE_IMAGE, PATH_ENGINE_SPRITES, PATH_SPACESHIP_IMAGE } from "../utils/constant.js";
+import { INITIAL_FRAMES, PATH_ENGINE_IMAGE, PATH_ENGINE_SPRITES, PATH_SPACESHIP_IMAGE } from "../utils/constant.js";
 
 class Player {
     constructor(canvaswidth, canvasheight) {
-        this.width = 48 * 3;
-        this.height = 48 * 3;
+        this.width = 48 * 2;
+        this.height = 48 * 2;
         this.velocity = 8;
 
         this.position = {
@@ -16,6 +16,7 @@ class Player {
         this.engineSprites = this.getImage(PATH_ENGINE_SPRITES);
 
         this.sx = 0
+        this.framesCounter = INITIAL_FRAMES;
     }
 
     getImage(path) {
@@ -66,12 +67,14 @@ class Player {
     }
     
     update() {
-        if (this.sx === 96) {
-            this.sx = 0
 
-        } else {
-            this.sx += 48;
+        if(this.framesCounter === 0) {
+
+            this.sx = this.sx === 96 ? 0 : this.sx + 48
+            this.framesCounter = INITIAL_FRAMES;
         }
+
+        this.framesCounter --;
     }
 }
 
