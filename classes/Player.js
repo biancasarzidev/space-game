@@ -61,12 +61,14 @@ class Player {
             this.width, 
             this.height
         );
+
+        this.update();
     }
     
     update() {
         if (this.sx === 96) {
             this.sx = 0
-            
+
         } else {
             this.sx += 48;
         }
