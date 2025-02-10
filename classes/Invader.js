@@ -25,6 +25,14 @@ class Invader {
     moveRight() {
         this.position.x += this.velocity;
     }
+
+    moveDown() {
+        this.position.y += this.height;
+    }
+
+    incrementVelocity(boost) {
+        this.velocity += boost;
+    }
     
     draw(ctx) {
         ctx.drawImage(
@@ -40,11 +48,18 @@ class Invader {
     shoot(projectiles) {
         const p  = new Projectile({
             x: this.position.x + this.width / 2 - 1,
-            y: this.position.y 
+            y: this.position.y + this.height,
             }, 10
         );
         
         projectiles.push(p);
+    }
+
+    hit(projectile) {
+        return(
+            projectile.position.x >= this.position.x &&
+            projectile.position.x <= this.position.x + this.width
+        )
     }
 }
 
